@@ -1,0 +1,88 @@
+---
+title: "TidyTuesday 2018 Week 28"
+author: '@jasonmstevens'
+date: "October 8, 2018"
+output:
+  html_document:
+    theme: journal
+    toc: yes
+    toc_depth: 3
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## How A Booming Population And Climate Change Made California’s Wildfires Worse Than Ever
+
+This is my take on the 2018 August 21 dataset provided by rfordatascience/tidytuesday.
+
+<br>
+
+The article related to this dataset can be found here:
+
+<p>
+
+<http://www.startribune.com/minnesota-leads-nation-in-turnout/400763681/>
+
+<br>
+
+All the following code for this exercise can be found at my github repo here:
+
+<p>
+
+<https://github.com/jasonmstevensphd/Tidy_Tuesday_2018_28>
+
+<br>
+
+Here we go!
+
+###Initial Exploration of the Dataset
+
+```{r Libraries, message=FALSE, warning=FALSE, EVAL=FALSE, include=FALSE}
+
+# This is where we import our libraries and files. We'll also add some information to be included on our plots
+
+library(knitr)
+library(tidyverse)
+library(RColorBrewer)
+library(lubridate)
+
+Week28_Data <- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2018-10-09/voter_turnout.csv")[-1]
+
+Week28_Data <- tolower(Week28_Data$state)
+
+# I include this in my plots to put a time and author stamp on the actual plot
+
+Time_of_Analysis <- now(tz = "America/New_York")
+Analyst <- "@jasonmstevens"
+
+# I prefer these settings for plots so I wrap them into an object to be concise
+
+plot <- ggplot()+
+  theme(plot.background = element_rect(fill = "white"))+
+  theme(panel.background = element_rect(fill = "white", theme(plot.title = element_text(face = "bold",
+                                                                        size = 18,
+                                                                        color = "navy"))+
+                                          theme(axis.title = element_text(face = "bold", size = 16))+
+                                          theme(aspect.ratio = 3.5/5)
+
+```
+
+###Mapping it out
+
+```{r Map 01, echo=FALSE, message=FALSE, warning=FALSE, tidy=TRUE}
+
+library(fiftystater)
+
+Plot_28_01 <- Week28_Data %>% filter(year == "2012", state != "United States", state != "District of Columbia") %>%
+  filter(!is.na(eligible_voters))
+Plot_28_01 <- ggplot(Plot_28_01, aes(map_id = state)) + 
+     geom_map(aes(fill = eligible_voters), map = fifty_states) + 
+     expand_limits(x = fifty_states$long, y = fifty_states$lat) +
+     coord_map() +
+  ggtitle("Map of Eligible Voters by State in the Year 2012!")
+
+Plot_28_01
+
+```
