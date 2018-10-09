@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is my analysis of the 2018 October 9th dataset provided by rfordatascience/tidytuesday (#tidytuesday).
 
-<br>
+<p>
 
 The article related to this dataset can be found here:
 
@@ -25,7 +25,7 @@ The article related to this dataset can be found here:
 
 <http://www.startribune.com/minnesota-leads-nation-in-turnout/400763681/>
 
-<br>
+<p>
 
 All the following code for this exercise can be found at my github repo here:
 
@@ -62,7 +62,6 @@ Analyst <- "@jasonmstevens"
 ###Mapping it out
 As the data were layed out by state I thought it would be interesting to plot a map. To get a sense of the data format I picked a random year (2012) and tried it out. First, there is "united states" listed in the state column. While this data are interesting it doesn't help us for mapping data so that was filtered out as was "District of Columbia". In order to make the scale more tangible the eligible voters were divided by 1 million.
 
-<br>
 
 ```{r Map 01, echo=FALSE, message=FALSE, warning=FALSE, tidy=TRUE}
 
