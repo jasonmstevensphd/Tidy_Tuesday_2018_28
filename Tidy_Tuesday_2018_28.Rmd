@@ -94,10 +94,10 @@ detach(package:fiftystater, unload = TRUE)
 ```
 
 ###Looking at Voter Turnout for NJ over Time
-To make the example local I calculated the voter turnout for New Jersey over time
+To make the example local I calculated the voter turnout for New Jersey over time. As is pretty clear from the graph the turnout is directly dependent on the type of election year it is. Also interesting, the number of eligible voters in increasing over time.
 
 
-```{r Map 01, echo=FALSE, message=FALSE, warning=FALSE, tidy=TRUE}
+```{r NJ Turnout, echo=FALSE, message=FALSE, warning=FALSE, tidy=TRUE}
 
 Week_28_02 <- Week28_Data %>% filter(state == "new jersey") %>%
   filter(!is.na(eligible_voters)) %>%
@@ -122,10 +122,10 @@ Plot_28_02
 ```
 
 ###The Distribution of Voter Turnout for Midterms and Presidential Years
-To make the example local I calculated the voter turnout for New Jersey over time
+To get a better idea of how turnout in New Jersey varies I generated a density plot to show the distribution of turnout for both Presidential (Yellow) and Midterm (Green). What I found striking is that the best Midterm turnout never exceeded the lowest Presidential turnout. What say you 2018?
 
 
-```{r Map 01, echo=FALSE, message=FALSE, warning=FALSE, tidy=TRUE}
+```{r NJ Density, echo=FALSE, message=FALSE, warning=FALSE, tidy=TRUE}
 
 Week_28_Midterm <- c(seq(1982, 2014, by = 4))
 Week_28_Pres <- c(seq(1980, 2014, by = 4))
